@@ -10,7 +10,7 @@ const app = express()
 const PORT = process.env.NODE_ENV || 5000
 
 app.use(cors())
-app.use(express.json({ limit: '50kb' }))
+app.use(express.json({ limit: '50mb' }))
 
 app.get('/', (req, res) => {
   res.send('Hello from DALL-E')

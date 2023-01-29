@@ -1,9 +1,8 @@
 import express from 'express'
+import { generateImg } from '../controllers/dalleController.js'
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  res.send('Hello from post dalle route')
-})
+router.post('/', generateImg)
 
 export default router
