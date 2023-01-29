@@ -13,7 +13,32 @@ function CreatePost() {
   const [isLoading, setIsLoading] = useState(false)
   const [isGeneratingImg, setIsGeneratingImg] = useState(false)
 
-  const handleSubmit = () => {}
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (form.name && form.prompt && form.photo) {
+      try {
+        setIsLoading(true)
+        const response = await fetch('http://localhost:5000/api/v1/posts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...form }),
+        })
+        await response.json()
+        navigate('/')
+      } catch (error) {
+        alert(error)
+      } finally {
+        setIsLoading(false)
+      }
+    } else {
+      alert(
+        'Please fill in the required fields and genarate the image to share the posts'
+      )
+    }
+  }
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -125,6 +150,7 @@ function CreatePost() {
           <button
             type="submit"
             className="hover-btn mt-3 w-full rounded-md bg-[#6469ff] px-5 py-2.5 text-center text-[16px] font-medium text-white hover:bg-[#4f55fa] sm:w-auto"
+            onClick={handleSubmit}
           >
             {isLoading ? 'Sharing...' : 'Share with the Community'}
           </button>

@@ -13,12 +13,12 @@
   }
 }
 
-.prompt::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 5px;
 }
 
-.prompt::-webkit-scrollbar-thumb {
-  background-color: #666e75;
+html::-webkit-scrollbar-thumb {
+  background-color: #8b949c;
   border-radius: 5px;
 }
 
